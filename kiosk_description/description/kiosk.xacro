@@ -4,16 +4,12 @@
     <xacro:include filename="inertial_macros.xacro"/>
 
 
-    <xacro:property name="wall_length" value="1.035"/>
-    <xacro:property name="wall_height" value="1.5"/>
-    <xacro:property name="top_length" value="1.035"/>
-    <xacro:property name="top_height" value="1.035"/>
+    <xacro:property name="width" value="1.215"/>
+    <xacro:property name="length" value="1.260"/>
+    <xacro:property name="height" value="1.170"/>
+
     <xacro:property name="wall_thickness" value="0.045"/>
-    <xacro:property name="chassis_mass" value="1.0"/>
-    <xacro:property name="arm_offset" value="0.5"/>
-
-    <!-- TODO: Seems to be a mismatch between arm size in sim and real life -->
-
+    <xacro:property name="arm_offset" value="0.4"/>
 
     <material name="white">
         <color rgba="1 1 1 0.5" />
@@ -21,7 +17,6 @@
 
 
     <!-- BASE LINK -->
-
     <link name="base_link">
     </link>
 
@@ -35,82 +30,79 @@
     </joint>
 
     <link name="kiosk">
-        <visual>
-            <!-- Back wall -->
-            <origin xyz="${wall_thickness/2} 0 ${wall_height/2}"/>
-            <geometry>
-                <box size="${wall_thickness} ${wall_length} ${wall_height}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <visual>
-            <!-- Front wall -->
-            <origin xyz="${wall_length - wall_thickness/2} 0 ${wall_height/2}"/>
-            <geometry>
-                <box size="${wall_thickness} ${wall_length} ${wall_height}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <visual>
-            <!-- Left wall -->
-            <origin xyz="${wall_length/2} ${wall_length/2 - wall_thickness/2} ${wall_height/2}"/>
-            <geometry>
-                <box size="${wall_length - 2*wall_thickness} ${wall_thickness} ${wall_height}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <visual>
-            <!-- Right wall -->
-            <origin xyz="${wall_length/2} ${-wall_length/2 + wall_thickness/2} ${wall_height/2}"/>
-            <geometry>
-                <box size="${wall_length - 2*wall_thickness} ${wall_thickness} ${wall_height}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <!-- Top wall -->
-        <visual>
-            <origin xyz="${wall_length/2} 0 ${wall_height - wall_thickness/2}"/>
-            <geometry>
-                <box size="${top_length} ${top_height} ${wall_thickness}"/>
-            </geometry>
-        </visual>
         <!-- Back wall -->
-        <collision>
-            <origin xyz="${wall_thickness/2} 0 ${wall_height/2}"/>
+        <visual>
+            <origin xyz="${wall_thickness/2} 0 ${height/2}"/>
             <geometry>
-                <box size="${wall_thickness} ${wall_length} ${wall_height}"/>
+                <box size="${wall_thickness} ${width} ${height}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="${wall_thickness/2} 0 ${height/2}"/>
+            <geometry>
+                <box size="${wall_thickness} ${width} ${height}"/>
             </geometry>
         </collision>
-        <!-- Front wall -->
-        <collision>
-            <origin xyz="${wall_length - wall_thickness/2} 0 ${wall_height/2}"/>
+         <!-- Front wall -->
+        <visual>
+            <origin xyz="${length - wall_thickness/2} 0 ${height/2}"/>
             <geometry>
-                <box size="${wall_thickness} ${wall_length} ${wall_height}"/>
+                <box size="${wall_thickness} ${width} ${height}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="${length - wall_thickness/2} 0 ${height/2}"/>
+            <geometry>
+                <box size="${wall_thickness} ${width} ${height}"/>
             </geometry>
         </collision>
         <!-- Left wall -->
-        <collision>
-            <origin xyz="${wall_length/2} ${wall_length/2 - wall_thickness/2} ${wall_height/2}"/>
+        <visual>
+            <origin xyz="${length/2} ${width/2 - wall_thickness/2} ${height/2}"/>
             <geometry>
-                <box size="${wall_length - 2*wall_thickness} ${wall_thickness} ${wall_height}"/>
+                <box size="${length - 2 * wall_thickness} ${wall_thickness} ${height}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="${length/2} ${width/2 - wall_thickness/2} ${height/2}"/>
+            <geometry>
+                <box size="${length - 2 * wall_thickness} ${wall_thickness} ${height}"/>
             </geometry>
         </collision>
         <!-- Right wall -->
-        <collision>
-            <origin xyz="${wall_length/2} ${-wall_length/2 + wall_thickness/2} ${wall_height/2}"/>
+        <visual>
+            <origin xyz="${length/2} ${-width/2 + wall_thickness/2} ${height/2}"/>
             <geometry>
-                <box size="${wall_length - 2*wall_thickness} ${wall_thickness} ${wall_height}"/>
+                <box size="${length - 2*wall_thickness} ${wall_thickness} ${height}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="${length/2} ${-width/2 + wall_thickness/2} ${height/2}"/>
+            <geometry>
+                <box size="${length - 2*wall_thickness} ${wall_thickness} ${height}"/>
             </geometry>
         </collision>
         <!-- Top wall -->
-        <collision>
-            <origin xyz="${wall_length/2} 0 ${wall_height - wall_thickness/2}"/>
+        <visual>
+            <origin xyz="${length/2} 0 ${height - wall_thickness/2}"/>
             <geometry>
-                <box size="${top_length} ${top_height} ${wall_thickness}"/>
+                <box size="${length} ${width} ${wall_thickness}"/>
             </geometry>
-        </collision>
-        <xacro:inertial_box mass="10" x="${wall_length}" y="${wall_length}" z="${wall_height}">
-            <origin xyz="${wall_length/2} 0 ${wall_height/2}" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <!-- <collision>
+            <origin xyz="${length/2} 0 ${height - wall_thickness/2}"/>
+            <geometry>
+                <box size="${length} ${width} ${wall_thickness}"/>
+            </geometry>
+        </collision> -->
+
+        <xacro:inertial_box mass="10" x="${length}" y="${width}" z="${height}">
+            <origin xyz="${length/2} 0 ${height/2}" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
 
