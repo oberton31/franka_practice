@@ -1,0 +1,14 @@
+<launch>
+  <!-- Launch the Gazebo simulation with specific parameters -->
+  <include file="$(find franka_gazebo)/launch/panda.launch">
+    <arg name="x" value="-0.5" />
+    <arg name="world" value="$(find franka_gazebo)/world/stone.sdf" />
+    <arg name="controller" value="cartesian_impedance_example_controller" />
+    <arg name="interactive_marker" value="false" />
+  </include>
+
+  <!-- Run the move_franka node after Gazebo starts -->
+  <node name="move_franka" pkg="fci_practice" type="move_franka" output="screen">
+    <!-- You can add any parameters here if needed -->
+  </node>
+</launch>

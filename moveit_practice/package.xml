@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>moveit_practice</name>
+  <version>0.0.1</version>
+  <description>A MoveIt! example package</description>
+
+  <!-- Author and license -->
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+  <license>BSD</license>
+
+  <!-- Build tool dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Build dependencies -->
+  <build_depend>moveit_core</build_depend>
+  <build_depend>moveit_ros_planning_interface</build_depend>
+  <build_depend>moveit_commander</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>moveit_visual_tools</build_depend>
+  <build_depend>shape_msgs</build_depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>moveit_core</exec_depend>
+  <exec_depend>moveit_ros_planning_interface</exec_depend>
+  <exec_depend>moveit_commander</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>moveit_visual_tools</exec_depend>
+  <exec_depend>shape_msgs</exec_depend>
+</package>

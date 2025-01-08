@@ -1,9 +1,3 @@
 # SNAAK Kiosk Description
 
-Follow steps from: https://github.com/oberton31/panda_simulator \
-Add this repository to catskin workspace \
-Rebuild workspace \
-
-
-Launch gazebo simulation with: \
-roslaunch kiosk_description snaak_world.launch
+Practice packages for using moveit, franka_control, and adding the new gazebo simulation
